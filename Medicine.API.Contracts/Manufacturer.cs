@@ -9,6 +9,8 @@ namespace Medicine.API.Contracts
 {
     public class Manufacturer : BaseEntity
     {
+        public int MedGuideRefId { get; set; }
+
         [MaxLength(500)]
         public string Address { get; set; }
 
