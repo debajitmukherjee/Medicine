@@ -9,7 +9,7 @@ namespace Medicine.Common
 {
     /// <summary>
     /// This class is used to log error in server
-    /// </summary>
+    /// </summary> 
     public static class ErrorLog
     {
         /// <summary>
