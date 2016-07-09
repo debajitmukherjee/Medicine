@@ -21,7 +21,7 @@ namespace Medicine.API.Repository.DBContext
 
         #region DB Set
 
-        public DbSet<Manufacturer> Manufacturers { get; set; }
+        public DbSet<Contracts.Manufacturer> Manufacturers { get; set; }
 
         public DbSet<Generic> Generics { get; set; }
 

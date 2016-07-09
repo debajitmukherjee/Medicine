@@ -85,23 +85,25 @@ namespace Medicine.Common
         /// <param name="queryCondtions"></param>
         private static void WriteLogInServer(string className, string eventName, string shortMessage, string errorDescription, string queryCondtions)
         {
+            FileStream fileStream = null;
             try
             {
                 GenerateErrorFileName();
 
                 bool isNew = false;
 
-                if (!System.IO.Directory.Exists(ErrorLog.errorLogFolderPath))
+                if (!Directory.Exists(errorLogFolderPath))
                 {
-                    System.IO.Directory.CreateDirectory(errorLogFolderPath);
+                    Directory.CreateDirectory(errorLogFolderPath);
                 }
 
-                if (!System.IO.File.Exists(errorFilePath))
+                if (!File.Exists(errorFilePath))
                 {
                     isNew = true;
                 }
 
-                using (System.IO.StreamWriter oSW = new System.IO.StreamWriter(new System.IO.FileStream(errorFilePath, System.IO.FileMode.Append, System.IO.FileAccess.Write)))
+                fileStream = new FileStream(errorFilePath, FileMode.Append, FileAccess.Write);
+                using (StreamWriter oSW = new StreamWriter(fileStream))
                 {
                     StringBuilder strMessage = new StringBuilder();
 
@@ -130,11 +132,11 @@ namespace Medicine.Common
                    
                     oSW.WriteLine("");
                     oSW.WriteLine(strMessage);
-                    oSW.Flush();
-                    oSW.Close();
+                   
+                    
                 }
             }
-            catch 
+            catch
             {
                 throw;
             }

@@ -12,9 +12,9 @@ namespace Medicine.API.Repository.Migrations
             AutomaticMigrationsEnabled = true;
         }
 
-        protected override void Seed(Medicine.API.Repository.DBContext.MedicineDbContext context)
+        protected override void Seed(DBContext.MedicineDbContext context)
         {
-            
+            // Do nothing for now.
         }
     }
 }

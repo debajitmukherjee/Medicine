@@ -25,6 +25,7 @@ namespace Medicine.API.Contracts
 
         public bool HasSingleGeneric { get; set; }
 
+        [Index]
         public int ManufacturerId { get; set; }
 
         [ForeignKey("ManufacturerId")]

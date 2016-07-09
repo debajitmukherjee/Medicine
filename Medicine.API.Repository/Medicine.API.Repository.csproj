@@ -50,6 +50,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DBContext\MedicineDBContext.cs" />
+    <Compile Include="Manufacturer\IManufacturerRepository.cs" />
+    <Compile Include="Manufacturer\ManufacturerRepository.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -57,6 +59,10 @@
     <ProjectReference Include="..\Medicine.API.Contracts\Medicine.API.Contracts.csproj">
       <Project>{876e74b7-513f-468f-9d4b-cdc11f8b2b86}</Project>
       <Name>Medicine.API.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Medicine.Common\Medicine.Common.csproj">
+      <Project>{7121215f-086a-42cb-9f26-1f6dbd4ace0b}</Project>
+      <Name>Medicine.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

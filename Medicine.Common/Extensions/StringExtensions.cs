@@ -20,9 +20,9 @@ namespace Medicine.Common
         /// </summary>
         /// <param name="source"></param>
         /// <returns></returns>
-        public static string StripHTMLTagsRegex(this string source)
+        public static string StripHtmlTagsRegex(this string source)
         {
-            if (source.IndexOf("<style", StringComparison.OrdinalIgnoreCase) >= 0 && source.IndexOf("</style", StringComparison.OrdinalIgnoreCase) > 0)
+            if (source.IndexOf("<style", StringComparison.OrdinalIgnoreCase) >= 1 && source.IndexOf("</style", StringComparison.OrdinalIgnoreCase) > 1)
             {
                 string strToRemove = source.Substring(source.IndexOf("<style", StringComparison.OrdinalIgnoreCase), source.IndexOf("</style>", StringComparison.OrdinalIgnoreCase) - source.IndexOf("<style", StringComparison.OrdinalIgnoreCase) + 8);
                 source = source.Replace(strToRemove, "");
@@ -38,7 +38,7 @@ namespace Medicine.Common
         /// <returns></returns>
         public static string StripText(this string source, int noOfChar)
         {
-            source = source.StripHTMLTagsRegex();
+            source = source.StripHtmlTagsRegex();
 
             if (string.IsNullOrEmpty(source))
             {
@@ -71,7 +71,7 @@ namespace Medicine.Common
         public static string GetUrlFriendlyName(this string title)
         {
             // make it all lower case
-            title = title.ToLower();
+            title = title.ToLower(CultureInfo.CurrentCulture);
             // remove entities
             title = Regex.Replace(title, @"&\w+;", "");
             // remove anything that is not letters, numbers, dash, or space
@@ -94,9 +94,9 @@ namespace Medicine.Common
         /// </summary>
         /// <param name="source"></param>
         /// <returns></returns>
-        public static string StripHTMLChar(string source)
+        public static string StripHtmlChar(string source)
         {
-            if (source.IndexOf("<style", StringComparison.OrdinalIgnoreCase) >= 0 && source.IndexOf("</style", StringComparison.OrdinalIgnoreCase) > 0)
+            if (source.IndexOf("<style", StringComparison.OrdinalIgnoreCase) >= 1 && source.IndexOf("</style", StringComparison.OrdinalIgnoreCase) > 1)
             {
                 string strToRemove = source.Substring(source.IndexOf("<style", StringComparison.OrdinalIgnoreCase), source.IndexOf("</style>", StringComparison.OrdinalIgnoreCase) - source.IndexOf("<style", StringComparison.OrdinalIgnoreCase) + 8);
                 source = source.Replace(strToRemove, "");
@@ -183,7 +183,10 @@ namespace Medicine.Common
                 byte[] byt = Convert.FromBase64String(source);
                 strRetVal = System.Text.Encoding.UTF8.GetString(byt);
             }
-            catch { }
+            catch (Exception ex)
+            {
+                ErrorLog.WriteLog("StringExtensions", "DecryptFromBase64", ex, "");
+            }
 
             return strRetVal;
         }

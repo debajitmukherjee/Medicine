@@ -58,7 +58,7 @@ namespace Medicine.Common
             if (str == null || str.Trim().Length == 0)
                 throw new ConfigurationErrorsException("No application setting available for key: " + keyName);
 
-            Guid value = Guid.Empty;
+            Guid value;
             Guid.TryParse(str, out value);
             return value;
         }
